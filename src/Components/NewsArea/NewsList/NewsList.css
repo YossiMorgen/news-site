@@ -1,0 +1,6 @@
+.NewsList{
+    width: 110%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10vh;   
+}

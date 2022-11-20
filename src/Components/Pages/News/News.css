@@ -1,0 +1,27 @@
+.searchForm{    
+    width: 98%;
+    padding: 10px;
+}
+
+.searchForm > button{
+    display: inline;
+    margin: 10px;
+}
+
+.searchForm > .error{
+    color: rgb(199, 103, 143);
+}
+
+.searchForm input, 
+.searchForm select{
+    padding: 10px;
+    width: 150px;
+    box-sizing: border-box;
+    border: 1px solid lightgray;
+    box-shadow: 2px 4px 4px 0px #0000006b;
+    margin-bottom: 13px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 10px
+}
+

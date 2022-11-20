@@ -1,0 +1,9 @@
+.ErrorRequest{
+    color: red;
+    text-align: center;
+}
+
+.ErrorRequest img{  
+    width: 35vw;
+    border-radius: 15%;
+}

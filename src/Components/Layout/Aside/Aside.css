@@ -1,0 +1,12 @@
+aside{
+    position: relative;
+}
+
+aside > img{
+    height: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -100px;
+    z-index: -3;
+}

@@ -1,0 +1,10 @@
+.Setting form input,
+.Setting form select {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid lightgray;
+    box-shadow: 2px 4px 4px 0px #0000006b;
+    margin-bottom: 13px;
+}
+

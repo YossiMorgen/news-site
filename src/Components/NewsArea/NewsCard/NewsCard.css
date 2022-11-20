@@ -1,0 +1,54 @@
+.NewsCard{
+    position: relative;
+    flex-basis: 25%;
+    min-width: 15%;
+    max-width: 30%;
+    flex-grow: initial;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;
+    margin: 3vh 1.5vw;
+    box-shadow: inset -4px -8px 19px 0px #c6c3c3;
+    border-radius: 5%;
+    position: relative;
+}
+
+.NewsCard > a{
+    background-color: transparent;
+    margin-bottom: 46px;
+}
+
+.NewsCard > a:hover{
+    background-color: transparent;
+}
+
+.NewsCard > a > h3:hover, .NewsCard > a > p:hover{
+    text-decoration: underline;
+}
+
+.NewsCard > a > img{
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 140px;
+    transition: all 0.3s ease-in-out;
+    margin: 4px;
+}
+
+.NewsCard > a > img:hover{
+    transform: scale(1.1);
+}
+
+.NewsCard > a > p,
+.NewsCard > a > h3{
+    overflow-x: hidden;
+}
+
+
+.NewsCard > div{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
