@@ -33,6 +33,7 @@ function SignIn() {
         const name = e.target.name;
         
         setData({ ...data, [name]: val });
+        console.log(data);
     } 
     
     const init = n => ({name: n, value: data[n], onChange: update })
@@ -44,6 +45,7 @@ function SignIn() {
             console.log("please enter default search setting")
             return
         }
+        console.log(data);
 
         axios.post(appConfig.register, data)
             .then(response => loginUser(response))
@@ -65,7 +67,7 @@ function SignIn() {
                 <br/>
                 <label>
                     <span>Password</span><br/>
-                    <input type="passeord"  />
+                    <input type="password"  {...init('password')}/>
                 </label>
                 <br/>
                 <label>

@@ -6,7 +6,7 @@ header{
 
  header > h1{
     display: inline-block;
-    margin: 2vw;
+    margin: 3vw;
 }
 
 header > div{
@@ -19,6 +19,7 @@ header > div a{
 }
 
 header > button{
-    margin: 4vw;
+    /* justify-content: center; */
+    margin: 3vw;
     height: 30px;
 }

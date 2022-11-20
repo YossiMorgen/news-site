@@ -11,7 +11,7 @@ function Setting(){
     useTitle('setting');
     const navigate = useNavigate();
     const { setAuth } = useContext(AuthContext);
-    const languages = ["ar", "de", "en", "es", "fr", "he", "it", "nl", "no", "pt", "ru", "sv", "ud", "zh"]
+    const categories = ["business", "entertainment", "general", "health", "science", "sports", "technology"]
     const countries = ["ae", "ar", "at", "au", "be", "bg", "br", "ca", "ch", "cn", "co", "cu", "cz", "de", "eg", "fr", "gb", "gr", "hk", "hu", "id", "ie", "il", "in", "it", "jp", "kr", "lt", "lv", "ma", "mx","my","ng","nl","no","nz","ph","pl","pt","ro","rs","ru","sa","se","sg","si","sk","th"]
     const auth = JSON.parse(sessionStorage.getItem('user'));
     const {loginUser} = useAuth();
@@ -52,9 +52,9 @@ function Setting(){
         for (const key in data) {
             data[key] !== '' && (newInfo[key] = data[key])
         }
-        console.log(newInfo);
+
         const newUser = {...JSON.parse(auth.config.data), ...auth.data.user,  ...newInfo}
-        console.log(newUser);
+
         axios.put(appConfig.users + "/" + (auth.data.user?.id || auth.data.id), newUser)
             .then(response => {
                 setAuth({ response });
@@ -71,11 +71,11 @@ function Setting(){
             <form onSubmit={send}>
                 <br/>
                 <label>
-                    <span>language</span><br/>
-                    <select {...init('language')}
+                    <span>Category</span><br/>
+                    <select {...init('category')}
                     >
                         <option value=''>--choose--</option>
-                        {languages.map((language, index) => <option key={index} value={language} >{language}</option>)}
+                        {categories.map((category, index) => <option key={index} value={category} >{category}</option>)}
                     </select>
                 </label>
                 
