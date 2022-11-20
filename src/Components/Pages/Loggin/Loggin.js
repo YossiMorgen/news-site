@@ -25,7 +25,10 @@ function Loggin() {
         const val = e.target.value;
         const name = e.target.name;
         setData({ ...data, [name]: val });
-    }
+        console.log(data)
+    } 
+
+    const init = n => ({name: n, value: data[n], onChange: update })
 
     const send = e => {
         e.preventDefault();
@@ -49,12 +52,12 @@ function Loggin() {
 
                 <label>
                     <span>Email</span><br/>
-                    <input type="text" name='email' value={data.email} onChange={update} />
+                    <input type="text" {...init('email')}/>
                 </label>
                 <br/>
                 <label>
                     <span>Password</span><br/>
-                    <input type="text" name='password' value={data.password} onChange={update} />
+                    <input type="text" {...init('password')} />
                 </label>
 
                 <br />

@@ -33,7 +33,9 @@ function SignIn() {
         const name = e.target.name;
         
         setData({ ...data, [name]: val });
-    }
+    } 
+    
+    const init = n => ({name: n, value: data[n], onChange: update })
 
     const send = e => {
         e.preventDefault();
@@ -58,22 +60,22 @@ function SignIn() {
 
                 <label>
                     <span>Email</span><br/>
-                    <input type="text" name='email' value={data.email} onChange={update} />
+                    <input {...init('email')} />
                 </label>
                 <br/>
                 <label>
                     <span>Password</span><br/>
-                    <input type="text" name='password' value={data.password} onChange={update} />
+                    <input type="passeord"  />
                 </label>
                 <br/>
                 <label>
                     <span>First Name</span><br/>
-                    <input type="text" name='f_name' value={data.f_name} onChange={update} />
+                    <input type="text" {...init('f_name')}/>
                 </label>
                 <br/>
                 <label>
                     <span>Last Name</span><br/>
-                    <input type="text" name='l_name' value={data.l_name} onChange={update} />
+                    <input type="text" {...init('l_name')} />
                 </label>
                 
                 
@@ -81,11 +83,7 @@ function SignIn() {
                 <br/>
                 <label>
                     <span>Categories  </span>
-                    <select
-                    value={data.category}
-                    onChange={update}
-                    name='category'
-                    >
+                    <select {...init('category')}>
                         <option value=''>--choose--</option>
                         {categories.map((category, index) => <option key={index} value={category} >{category}</option>)}
                     </select>
@@ -94,11 +92,7 @@ function SignIn() {
                 <br/>
                 <label>
                     <span>country</span><br/>
-                    <select
-                    value={data.country}
-                    onChange={update}
-                    name='country'
-                    >
+                    <select {...init('country')}>
                         <option value=''>--choose--</option>
                         {countries.map((country, index) => <option key={index} value={country} >{country}</option>)}
                     </select>

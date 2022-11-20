@@ -31,6 +31,8 @@ function Setting(){
         setData({ ...data, [name]: val });
     }
 
+    const init = n => ({name: n, value: data[n], onChange: update })
+
     const valid = ()=>{
         for (const key in data) {
             if(data[key] !== ""){
@@ -70,10 +72,7 @@ function Setting(){
                 <br/>
                 <label>
                     <span>language</span><br/>
-                    <select
-                    value={data.language}
-                    onChange={update}
-                    name='language'
+                    <select {...init('language')}
                     >
                         <option value=''>--choose--</option>
                         {languages.map((language, index) => <option key={index} value={language} >{language}</option>)}
@@ -83,11 +82,7 @@ function Setting(){
                 <br/>
                 <label>
                     <span>country</span><br/>
-                    <select
-                    value={data.country}
-                    onChange={update}
-                    name='country'
-                    >
+                    <select {...init('country')}>
                         <option value=''>--choose--</option>
                         {countries.map((country, index) => <option key={index} value={country} >{country}</option>)}
                     </select>
