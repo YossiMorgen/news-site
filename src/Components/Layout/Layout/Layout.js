@@ -27,14 +27,24 @@ function Layout() {
     useEffect(()=>{
       let url = ''
       if(auth?.data){
-        url = appConfig.news + "country=" + (auth.data?.user?.country || auth.data.country) + "&category=" + (auth.data?.user?.category || auth.data.category) + appConfig.newsKey;
+        console.log(auth);
+        url = appConfig.news + "country=" + ((auth.data?.user?.country || auth?.data?.country) || '') + "&category=" + ((auth.data?.user?.category || auth.data?.category) || '') + appConfig.newsKey;
       }else{
+        console.log("hi");
         const categories = ["business", "entertainment", "general", "health", "science", "sports", "technology"]
         const countries = ["ae", "ar", "at", "au", "be", "bg", "br", "ca", "ch", "cn", "co", "cu", "cz", "de", "eg", "fr", "gb", "gr", "hk", "hu", "id", "ie", "il", "in", "it", "jp", "kr", "lt", "lv", "ma", "mx","my","ng","nl","no","nz","ph","pl","pt","ro","rs","ru","sa","se","sg","si","sk","th"]
         url = appConfig.news + "country=" + countries[(Math.floor(Math.random()* countries.length + 1))] + "&category=" + categories[(Math.floor(Math.random()* categories.length))] + appConfig.newsKey;
       }
+        console.log(url);
         axios.get(url)
-        .then(response => setData(response))
+        .then(response => {
+          if(response.data.articles.length === 0){
+            console.log("we don't have info for your search")
+            return;
+          }
+          setData(response)
+          console.log(response)
+        })
         .catch(err => setError(err))
         .finally(() => setLoading(false))
     },[auth])
@@ -42,7 +52,7 @@ function Layout() {
   if(error){
     return(
       <main className="Main">
-        error
+        {/* <ErrorRequest error={error} /> */}
       </main>
     )
   }

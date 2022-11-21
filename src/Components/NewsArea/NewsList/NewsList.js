@@ -11,7 +11,7 @@ function NewsList(){
         <div className="NewsList">
             {/* <button onClick={notify}>click</button>
             <ToastContainer /> */}
-            {!news.data.articles.length && "sorry but we don't have the info"}
+
             {news.data.articles?.map((article, index)=><NewsCard key={index} article={article}/>)}
         </div>
     )

@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from "react";
 import appConfig from "../../Config/appConfig";
 import useAuth from "../../Services/useAuth";
-// import useAuth from "../../Services/useAuth";
 import './SignIn.css'
 
 
@@ -41,6 +40,11 @@ function SignIn() {
     const send = e => {
         e.preventDefault();
         setErr('');
+        if(data.l_name === '' || data.f_name === ''){
+            console.log('please enter your name') 
+            return
+        }
+
         if(data.category === '' && data.country === ''){
             console.log("please enter default search setting")
             return

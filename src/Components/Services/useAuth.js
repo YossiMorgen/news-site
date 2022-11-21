@@ -8,7 +8,7 @@ function useAuth() {
     const navigate = useNavigate();
 
     const loginUser = data => {
-        setAuth({ data });
+        setAuth({ ...data });
         sessionStorage.setItem('user', JSON.stringify(data));
         navigate('/home');
     }

@@ -58,6 +58,7 @@ function News(){
         
         axios.get(url)
             .then(response => {
+
                 if(response.data.articles.length === 0){
                     console.log("we don't have info for your search")
                     return;
