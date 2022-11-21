@@ -7,6 +7,7 @@ import './Header.css';
 function Header() {
   const {auth} = useContext(AuthContext);
   const {logoutUser} = useAuth();
+  console.log(auth);
   return (
     <header className="Header">
       <h1>News-Site</h1>

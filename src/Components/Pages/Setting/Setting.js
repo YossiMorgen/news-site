@@ -57,7 +57,7 @@ function Setting(){
 
         axios.put(appConfig.users + "/" + (auth.data.user?.id || auth.data.id), newUser)
             .then(response => {
-                setAuth({ response });
+                setAuth({ ...response });
                 sessionStorage.setItem('user', JSON.stringify(response));
                 navigate('/news');
             })

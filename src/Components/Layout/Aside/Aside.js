@@ -12,7 +12,7 @@ function Aside() {
       <img alt='clown' src='https://img.icons8.com/color/512/pennywise.png' />
         <NavLink to={'/home'} >Home</NavLink>
         <NavLink to={'/news'} >News</NavLink>
-        {auth.data && <NavLink to={'/setting'} >Setting</NavLink>}
+        {(auth.data ) && <NavLink to={'/setting'} >Setting</NavLink>}
     </aside>
   );
 }

@@ -3,7 +3,9 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className="Footer">
-      footer
+      this is my nice react app 
+
+      
     </footer>
   );
 }
