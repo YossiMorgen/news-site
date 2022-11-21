@@ -53,9 +53,7 @@ function Setting(){
             data[key] !== '' && (newInfo[key] = data[key])
         }
 
-        const newUser = {...JSON.parse(auth.config.data), ...auth.data.user,  ...newInfo}
-
-        axios.put(appConfig.users + "/" + (auth.data.user?.id || auth.data.id), newUser)
+        axios.patch(appConfig.users + "/" + (auth.data.user?.id || auth.data.id), newInfo)
             .then(response => {
                 setAuth({ ...response });
                 sessionStorage.setItem('user', JSON.stringify(response));

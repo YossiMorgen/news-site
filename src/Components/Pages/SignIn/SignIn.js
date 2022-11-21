@@ -3,6 +3,8 @@ import { useState } from "react";
 import appConfig from "../../Config/appConfig";
 import useAuth from "../../Services/useAuth";
 import './SignIn.css'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function SignIn() {
@@ -41,12 +43,14 @@ function SignIn() {
         e.preventDefault();
         setErr('');
         if(data.l_name === '' || data.f_name === ''){
-            console.log('please enter your name') 
+            toast.error("please enter your name", {
+                className: 'styled-toast-error',
+            })
             return
         }
 
         if(data.category === '' && data.country === ''){
-            console.log("please enter default search setting")
+            toast.error("please enter default search setting")
             return
         }
         console.log(data);

@@ -12,7 +12,7 @@ function NewsList(){
             {/* <button onClick={notify}>click</button>
             <ToastContainer /> */}
 
-            {news.data.articles?.map((article, index)=><NewsCard key={index} article={article}/>)}
+            {news.data?.articles?.map((article, index)=><NewsCard key={index} article={article}/>)}
         </div>
     )
 }

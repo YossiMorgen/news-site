@@ -7,3 +7,7 @@
     box-shadow: 2px 4px 4px 0px #0000006b;
     margin-bottom: 13px;
 }
+
+.styled-toast-error{
+    background: brown;
+}
