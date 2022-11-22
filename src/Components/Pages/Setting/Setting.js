@@ -1,20 +1,21 @@
 import axios from 'axios';
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import appConfig from '../../Config/appConfig';
 import './Setting.css'
 import useTitle from "../../Services/useTitle";
-import useAuth from '../../Services/useAuth';
-import AuthContext from '../../Context/AuthContext/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import NewsContext from '../../Context/NewsContext/NewsContext';
+import { toast } from 'react-toastify';
 
 function Setting(){
+    const toastId = useRef(null)
+    const {setNews, setError, setLoading} = useContext(NewsContext)
+    let newInfo = {};
     useTitle('setting');
     const navigate = useNavigate();
-    const { setAuth } = useContext(AuthContext);
     const categories = ["business", "entertainment", "general", "health", "science", "sports", "technology"]
     const countries = ["ae", "ar", "at", "au", "be", "bg", "br", "ca", "ch", "cn", "co", "cu", "cz", "de", "eg", "fr", "gb", "gr", "hk", "hu", "id", "ie", "il", "in", "it", "jp", "kr", "lt", "lv", "ma", "mx","my","ng","nl","no","nz","ph","pl","pt","ro","rs","ru","sa","se","sg","si","sk","th"]
     const auth = JSON.parse(sessionStorage.getItem('user'));
-    const {loginUser} = useAuth();
     const form = {
         language: '', 
         country: '',
@@ -42,24 +43,44 @@ function Setting(){
         return false;
     }
 
+    
+
     const send = e => {
         e.preventDefault();
         if(!valid()){
             console.log("please enter some info to search")
           return;
         }
-        let newInfo = {};
         for (const key in data) {
             data[key] !== '' && (newInfo[key] = data[key])
         }
 
         axios.patch(appConfig.users + "/" + (auth.data.user?.id || auth.data.id), newInfo)
             .then(response => {
-                setAuth({ ...response });
+                newsAxios();
                 sessionStorage.setItem('user', JSON.stringify(response));
                 navigate('/news');
             })
             .catch(err => console.log("error " + err))
+    }
+
+    const newsAxios = () => {
+        setLoading(true);
+        toastId.current = toast.loading('loading...')
+        axios.get(appConfig.news + "country=" + (newInfo.country || auth.data?.user?.country || auth?.data?.country || '') + "&category=" + (newInfo.category || auth.data?.user?.category || auth.data?.category || '') + appConfig.newsKey)
+            .then(response => {
+                toast.success('Info recived successfuly')
+                setError(false)
+                setNews(response)
+            })
+            .catch(err => {
+                toast.error(err?.response?.data)
+                setError(err?.response?.data)
+            })
+            .finally(() => {
+                toast.dismiss(toastId.current)
+                setLoading(false);
+            })
     }
 
     return(

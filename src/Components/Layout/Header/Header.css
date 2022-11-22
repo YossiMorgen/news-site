@@ -6,12 +6,12 @@ header{
 
  header > h1{
     display: inline-block;
-    margin: 3vw;
+    margin-left:  3vw;
 }
 
 header > div{
     display: inline-block;
-    margin: 3vw;
+    margin:  3vw;
 }
 
 header > div a{

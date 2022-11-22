@@ -53,11 +53,10 @@ function SignIn() {
             toast.error("please enter default search setting")
             return
         }
-        console.log(data);
 
         axios.post(appConfig.register, data)
             .then(response => loginUser(response))
-            .catch(err => setErr(err.response.data))
+            .catch(err => toast.error(err.response.data))
     }
 
 
@@ -110,9 +109,6 @@ function SignIn() {
 
                 <br />
                 <button >SignIn </button>
-
-                <br />
-                <span>{err}</span>
 
             </form>
 

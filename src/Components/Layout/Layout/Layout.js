@@ -1,78 +1,27 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import appConfig from '../../Config/appConfig';
+import { useState } from 'react';
 import AuthContext from '../../Context/AuthContext/AuthContext';
-import NewsContext from '../../Context/NewsContext/NewsContext';
 import Loader from '../../DashBoard/Loader/Loader';
 import Aside from '../Aside/Aside';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import './Layout.css';
-import { toast } from 'react-toastify';
+import NewsProvider from '../../Context/NewsProvider/NewsProvider';
 
 function Layout() {
     const [auth, setAuth] = useState(JSON.parse(sessionStorage.getItem('user')) || {});
 
-    const [data, setData] = useState([]);
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(true)
-    
-    if (auth?.data) {
-      axios.interceptors.request.use((config) => {
-          config.headers = { Authorization: "Bearer " + auth.data.accessToken }
-          return config;
-      })
-    }
-
-    useEffect(()=>{
-      let url = ''
-      if(auth?.data){
-        console.log(auth);
-        url = appConfig.news + "country=" + ((auth.data?.user?.country || auth?.data?.country) || '') + "&category=" + ((auth.data?.user?.category || auth.data?.category) || '') + appConfig.newsKey;
-      }else{
-        const categories = ["business", "entertainment", "general", "health", "science", "sports", "technology"]
-        const countries = ["ae", "ar", "at", "au", "be", "bg", "br", "ca", "ch", "cn", "co", "cu", "cz", "de", "eg", "fr", "gb", "gr", "hk", "hu", "id", "ie", "il", "in", "it", "jp", "kr", "lt", "lv", "ma", "mx","my","ng","nl","no","nz","ph","pl","pt","ro","rs","ru","sa","se","sg","si","sk","th"]
-        url = appConfig.news + "country=" + countries[(Math.floor(Math.random()* countries.length + 1))] + "&category=" + categories[(Math.floor(Math.random()* categories.length))] + appConfig.newsKey;
-      }
-        console.log(url);
-        axios.get(url)
-        .then(response => {
-          if(response.data.articles.length === 0){
-            toast("sorry but  we don't have info for your search")
-            return;
-          }
-          setData(response)
-          console.log(response)
-        })
-        .catch(err => setError(err))
-        .finally(() => setLoading(false))
-    },[auth])
-
-  if(error){
-    return(
-      <main className="Main">
-        {/* <ErrorRequest error={error} /> */}
-      </main>
-    )
-  }
-  if(loading){
-    return(
-      <main>
-        <Loader />
-      </main>
-    )
-  }
   return (
     <div className="Layout">
+      <NewsProvider>
       <AuthContext.Provider value={{auth, setAuth}}>
-      <NewsContext.Provider value={{news: data, set: setData}}>
         <Header/>
         <Main/>
         <Aside/>
         <Footer/>
-      </NewsContext.Provider>
       </AuthContext.Provider>
+      </NewsProvider>
+
     </div>
   );
 }

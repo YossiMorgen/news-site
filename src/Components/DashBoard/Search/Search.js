@@ -11,7 +11,7 @@ function Search(){
     const categories = ["business", "entertainment", "general", "health", "science", "sports", "technology"]
     const countries = ["ae", "ar", "at", "au", "be", "bg", "br", "ca", "ch", "cn", "co", "cu", "cz", "de", "eg", "fr", "gb", "gr", "hk", "hu", "id", "ie", "il", "in", "it", "jp", "kr", "lt", "lv", "ma", "mx","my","ng","nl","no","nz","ph","pl","pt","ro","rs","ru","sa","se","sg","si","sk","th"]
     const auth = JSON.parse(sessionStorage.getItem('user'));
-    const {set} = useContext(NewsContext)
+    const {setNews} = useContext(NewsContext)
 
     const form = {
         search: '',
@@ -61,27 +61,13 @@ function Search(){
                     return;
                 }
                  
-                set(response)
+                setNews(response)
             })
             .catch(err => console.log(err))
-            // .finally(() => setLoading(false))
+            .finally(() => setLoading(false))
     }
-    if(err){
-        console.log(err);
-        return(
-            <div>
-                error
-            </div>
-        )
-    }
-
-    if(loading){
-        <div>
-            <Loader/>
-        </div>
-    }
+    
     return(
-        // auth?.data
              <form onSubmit={send}  className="searchForm">
 
             <label>
