@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../../Context/AuthContext/AuthContext';
 import useAuth from '../../Services/useAuth';
 import './Header.css';
@@ -11,6 +11,7 @@ function Header() {
   return (
     <header className="Header">
       <h1>News-Site</h1>
+      
       {
         auth?.data  && <button onClick={logoutUser}>Logout</button>
       }

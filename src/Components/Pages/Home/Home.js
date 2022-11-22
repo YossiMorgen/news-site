@@ -18,12 +18,12 @@ function Home() {
         <p>
           {/* <Link/> */}
           welcome to my news app  
-          {auth?.data ? (<> you can <Link to={'/sign_in'} >sign in</Link>   or   <Link to={'/loggin'}>log in</Link></>) : ''}
+          {auth?.data ? (<> you can <Link to='/sign_in' >sign in</Link>   or   <Link to='/loggin'>log in</Link></>) : ''}
           <br/>
-          in the news page you'll have a list of random news 
+          in the news page you'll have a list of random <Link to='news'>news</Link> 
           <br/>
           once you connected to the system you have a search options and 
-          {auth?.data ? (<><Link to={'setting'}> setting </Link></>) : ' setting ' } page
+          {auth?.data ? (<><Link to='setting'> setting </Link></>) : ' setting ' } page
         </p>
     </div>
   );

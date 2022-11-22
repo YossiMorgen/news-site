@@ -1,3 +1,31 @@
+@media only screen and (max-width: 600px) {
+ .Layout{
+    height: 100vh;
+ }
+ header{
+    background: #B0BEC5;
+    min-height: 10%;
+ }
+ aside{
+    display: none;
+ }
+ main{
+    padding: 4vh;
+    min-height: 84%;
+    background: #ECEFF1;
+    box-shadow: inset -4px -8px 19px 0px #626262;
+ }
+ footer{
+    background-color: rgb(5, 79, 116);
+    min-height: 7%;
+    text-align: center;
+    padding: 2vh;
+ }
+
+}
+
+@media only screen and (min-width: 600px) {
+
 .Layout {
     display: flex;
     flex-wrap: wrap;
@@ -24,10 +52,8 @@
     top: 15vh;
     bottom: 0;
     right: 0;
-    /* min-height: 100%; */
     background: #78909C;
     padding: 10px;
-    /* margin: 0; */
     box-sizing: border-box;
     z-index: 1;
 }
@@ -50,14 +76,12 @@
     background-color: rgb(5, 79, 116);
     height: 13vh;
     margin-bottom: 0;
-    /* position: fixed ;
-    bottom: 0;
-    right: 0;
-    left: 0; */
     z-index: 2;
     text-align: center;
 }
 
+
+}
 a{
     background-color: #8bb4c96d;
     border-radius: 5%;

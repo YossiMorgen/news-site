@@ -22,3 +22,6 @@ header > button{
     margin: 3vw;
     height: 30px;
 }
+.titleHeader > a{
+    border: none;
+}
