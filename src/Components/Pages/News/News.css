@@ -8,10 +8,6 @@
     margin: 10px;
 }
 
-.searchForm > .error{
-    color: rgb(199, 103, 143);
-}
-
 .searchForm input, 
 .searchForm select{
     padding: 10px;

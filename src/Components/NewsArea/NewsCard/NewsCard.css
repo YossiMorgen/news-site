@@ -18,13 +18,19 @@
     margin-bottom: 46px;
 }
 
+.NewsCard:hover > a > h3,
+.NewsCard:hover > a > p{
+    text-decoration: underline;
+
+}
+
 .NewsCard > a:hover{
     background-color: transparent;
 }
 
-.NewsCard > a > h3:hover, .NewsCard > a > p:hover{
+/* .NewsCard > a > h3:hover, .NewsCard > a > p:hover{
     text-decoration: underline;
-}
+} */
 
 .NewsCard > a > img{
     border-radius: 10px;
@@ -34,12 +40,12 @@
     margin: 4px;
 }
 
-.NewsCard > a > img:hover{
+.NewsCard:hover > a > img{
     transform: scale(1.1);
 }
 
 .NewsCard > a > p,
-.NewsCard > a > h3{
+.NewsCard > a > h3,{
     overflow-x: hidden;
 }
 

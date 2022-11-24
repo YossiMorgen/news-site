@@ -18,7 +18,7 @@ function Home() {
         <p>
           {/* <Link/> */}
           welcome to my news app  
-          {auth?.data ? (<> you can <Link to='/sign_in' >sign in</Link>   or   <Link to='/loggin'>log in</Link></>) : ''}
+          {!auth?.data ? (<> you can <Link to='/sign_in' >sign in</Link>   or   <Link to='/loggin'>log in</Link></>) : ''}
           <br/>
           in the news page you'll have a list of random <Link to='news'>news</Link> 
           <br/>

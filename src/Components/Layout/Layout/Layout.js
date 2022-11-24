@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import AuthContext from '../../Context/AuthContext/AuthContext';
-import Loader from '../../DashBoard/Loader/Loader';
 import Aside from '../Aside/Aside';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
