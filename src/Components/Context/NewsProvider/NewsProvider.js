@@ -10,22 +10,22 @@ function NewsProvider({children}){
     const [news, setNews] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
-  console.log(appConfig.categories);
+
     useEffect(()=>{
       const countries = appConfig.countries;
       const categories = appConfig.categories
-
-      const url = appConfig.news + "country=" + (auth?.data?.user?.country || auth?.data?.country || countries[(Math.floor(Math.random()* countries.length + 1))]) + "&category=" + ((auth?.data?.user?.category || auth?.data?.category) || '' || categories[(Math.floor(Math.random()* categories.length))]) + appConfig.newsKey;
-        
+      console.log(auth);
+      const url = appConfig.news + "country=" + (auth?.data?.user?.country || countries[(Math.floor(Math.random()* countries.length + 1))]) + "&category=" + (auth?.data?.user?.category || categories[(Math.floor(Math.random()* categories.length))]) + appConfig.newsKey;
+      console.log(url);
 
         axios.get(url)
           .then(response => {
             if(response.data?.articles?.length === 0){
-              toast("sorry but  we don't have info for your search")
+              toast("sorry but  we don't have info for you")
               return;
             }
+            console.log(response);
             setNews(response)
-            console.log(response)
           })
           .catch(err => {
             toast.error(err?.response?.data)

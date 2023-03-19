@@ -34,7 +34,6 @@ function SignIn() {
         const name = e.target.name;
         
         setData({ ...data, [name]: val });
-        console.log(data);
     } 
     
     const init = n => ({name: n, value: data[n], onChange: update })
@@ -53,8 +52,8 @@ function SignIn() {
             toast.error("please enter default search setting")
             return
         }
-
-        axios.post(appConfig.register, data)
+        console.log(data)
+        axios.post(appConfig.register, {...data})
             .then(response => loginUser(response))
             .catch(err => toast.error(err.response.data))
     }

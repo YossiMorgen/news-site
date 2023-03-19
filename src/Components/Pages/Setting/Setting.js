@@ -6,8 +6,11 @@ import useTitle from "../../Services/useTitle";
 import { useNavigate } from 'react-router-dom';
 import NewsContext from '../../Context/NewsContext/NewsContext';
 import { toast } from 'react-toastify';
+import AuthContext from '../../Context/AuthContext/AuthContext';
+import useAuth from '../../Services/useAuth';
 
 function Setting(){
+    const {auth, setAuth } = useContext(AuthContext);
     const toastId = useRef(null)
     const {setNews, setError, setLoading} = useContext(NewsContext)
     let newInfo = {};
@@ -15,7 +18,7 @@ function Setting(){
     const navigate = useNavigate();
     const categories = ["business", "entertainment", "general", "health", "science", "sports", "technology"]
     const countries = ["ae", "ar", "at", "au", "be", "bg", "br", "ca", "ch", "cn", "co", "cu", "cz", "de", "eg", "fr", "gb", "gr", "hk", "hu", "id", "ie", "il", "in", "it", "jp", "kr", "lt", "lv", "ma", "mx","my","ng","nl","no","nz","ph","pl","pt","ro","rs","ru","sa","se","sg","si","sk","th"]
-    const auth = JSON.parse(sessionStorage.getItem('user'));
+    const {loginUser} = useAuth();
     const form = {
         language: '', 
         country: '',
@@ -57,31 +60,38 @@ function Setting(){
 
         axios.patch(appConfig.users + "/" + (auth.data.user?.id || auth.data.id), newInfo)
             .then(response => {
-                newsAxios();
-                sessionStorage.setItem('user', JSON.stringify(response));
-                navigate('/news');
+                const newAuth = response;
+                console.log(newAuth);
+                newAuth.data.user = {...response.data};
+                newAuth.data.accessToken = auth.data.accessToken;
+                console.log(newAuth);
+                loginUser(newAuth)
+                console.log(auth);
+                // setAuth({...newAuth})
+                // sessionStorage.setItem('user', JSON.stringify(newAuth));
+                // navigate('/news');
             })
             .catch(err => console.log("error " + err))
     }
 
-    const newsAxios = () => {
-        setLoading(true);
-        toastId.current = toast.loading('loading...')
-        axios.get(appConfig.news + "country=" + (newInfo.country || auth.data?.user?.country || auth?.data?.country || '') + "&category=" + (newInfo.category || auth.data?.user?.category || auth.data?.category || '') + appConfig.newsKey)
-            .then(response => {
-                toast.success('Info recived successfuly')
-                setError(false)
-                setNews(response)
-            })
-            .catch(err => {
-                toast.error(err?.response?.data)
-                setError(err?.response?.data)
-            })
-            .finally(() => {
-                toast.dismiss(toastId.current)
-                setLoading(false);
-            })
-    }
+    // const newsAxios = () => {
+    //     setLoading(true);
+    //     toastId.current = toast.loading('loading...')
+    //     axios.get(appConfig.news + "country=" + (newInfo.country || auth.data?.user?.country || auth?.data?.country || '') + "&category=" + (newInfo.category || auth.data?.user?.category || auth.data?.category || '') + appConfig.newsKey)
+    //         .then(response => {
+    //             toast.success('Info recived successfuly')
+    //             setError(false)
+    //             setNews(response)
+    //         })
+    //         .catch(err => {
+    //             toast.error(err?.response?.data)
+    //             setError(err?.response?.data)
+    //         })
+    //         .finally(() => {
+    //             toast.dismiss(toastId.current)
+    //             setLoading(false);
+    //         })
+    // }
 
     return(
         <div className='Setting'>

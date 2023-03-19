@@ -45,7 +45,7 @@
 }
 
 .NewsCard > a > p,
-.NewsCard > a > h3,{
+.NewsCard > a > h3{
     overflow-x: hidden;
 }
 

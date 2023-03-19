@@ -1,5 +1,4 @@
 import { useContext, useRef } from "react";
-import { Route, Routes } from "react-router-dom";
 import { toast } from "react-toastify";
 import NewsContext from "../../Context/NewsContext/NewsContext";
 import Search from "../../DashBoard/Search/Search";
@@ -31,7 +30,7 @@ function News(){
         )
     }
     toast.dismiss(toastId.current)
-    toast.success('Info recived successfuly')
+
     return (
         <div className='News'>
             {auth?.data && <Search/>}

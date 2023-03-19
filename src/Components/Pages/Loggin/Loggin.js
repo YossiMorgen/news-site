@@ -15,9 +15,6 @@ function Loggin() {
         password: '',
     }
 
-    const button = useRef();
-    const loading = () => button.current.classList.toggle('load');
-
     const [data, setData] = useState(form);
     const [err, setErr] = useState('');
 
@@ -31,14 +28,12 @@ function Loggin() {
 
     const send = e => {
         e.preventDefault();
-
-        loading()
+        console.log(data);
         setErr('');
 
         axios.post(appConfig.login, data)
             .then(response => loginUser(response))
             .catch(err => setErr(err.response.data))
-            .finally(loading());
     }
 
 
@@ -60,7 +55,7 @@ function Loggin() {
                 </label>
 
                 <br />
-                <button ref={button} >Loggin <span className="loader"></span></button>
+                <button >Loggin <span className="loader"></span></button>
 
                 <br />
                 <span>{err}</span>
